@@ -1,6 +1,7 @@
 # ChrisHit3D
 Only for fun! 
 Small based OpenGL ES 2/3, for mobile and desktop applications.
+Open-source under MIT license.
 
 ## Roadmap:
 - Android/IOS support
