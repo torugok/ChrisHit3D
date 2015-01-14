@@ -1,11 +1,12 @@
 #ifndef WINDOW_H
-#include <GLFW\glfw3.h>
+#define WINDOW_H
+
 
 
 namespace chrisHit
 {
-
-
+#if defined(WIN32)
+#include <GLFW\glfw3.h>
 	class Window
 	{
 	private:
@@ -17,7 +18,7 @@ namespace chrisHit
 		void MakeLoop();
 		void terminate();
 	};
+#endif
+}
 
 #endif // !WINDOW_H
-
-}

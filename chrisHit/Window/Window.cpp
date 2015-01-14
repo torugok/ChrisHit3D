@@ -1,9 +1,9 @@
-
 #include "..\Base\Common.h"
 #include "Window.h"
+
 namespace chrisHit
 {
-
+#if defined(WIN32)
 	Window::Window(int x, int y, const char *title)
 	{
 		glfwInit();
@@ -13,6 +13,7 @@ namespace chrisHit
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+		glewExperimental = GL_TRUE;
 		#endif
 		window = glfwCreateWindow(x, y, title, NULL, NULL);
 		if (!window)
@@ -20,7 +21,6 @@ namespace chrisHit
 			glfwTerminate();
 		}
 		glfwMakeContextCurrent(window);
-		glewExperimental = GL_TRUE;
 		glewInit();
 	}
 
@@ -29,9 +29,10 @@ namespace chrisHit
 		return glfwWindowShouldClose(window);
 	}
 
+	//Render before this
 	void Window::MakeLoop()
 	{
-		//Render before this
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -41,3 +42,4 @@ namespace chrisHit
 		glfwTerminate();
 	}
 }
+#endif

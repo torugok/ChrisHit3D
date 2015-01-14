@@ -12,15 +12,19 @@ namespace chrisHit
 		CHint vertex_pos;
 		CHint position_loc;
 		CHuint mesh_vbo;
+		CHuint mesh_vao[1];
+		//std::vector<CHuint> mesh_vao;
 		CHsizei mesh_count;
 		//CHfloat *mesh_data;
 		ShaderProgram *mesh_program;
-		std::vector<CHuint> mesh_vao;
+		
 	public:
-		Mesh(const CHvoid *data, CHsizeiptr size, CHsizei count,  ShaderProgram *program);
-		Mesh(const CHvoid *data, CHsizeiptr size, CHsizei count);
+		Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count,  ShaderProgram *program);
+		Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count);
 		~Mesh();
+		
 		void draw();
+		ShaderProgram *getProgram();
 	};
 }
 

@@ -2,7 +2,7 @@
 Only for fun! 
 Small based OpenGL ES 2/3, for mobile and desktop applications.
 
-## Roadmap:
+## Roadmap
 - Android/IOS support
 - Cross platform I/O
 - Data driven system

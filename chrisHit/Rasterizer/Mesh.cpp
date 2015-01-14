@@ -2,48 +2,42 @@
 
 namespace chrisHit
 {
-	Mesh::Mesh(const CHvoid *data, CHsizeiptr size, CHsizei count, ShaderProgram *program)
+	Mesh::Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count, ShaderProgram *program)
 	{
-		mesh_count = count;
+		mesh_count = vertex_count;
 		mesh_program = program;
 		vertex_pos = mesh_program->getAttribLocation("Vertex_Pos");
 
-		CHuint temp_vao;
-		glGenVertexArrays(1, &temp_vao);
-		mesh_vao.push_back(temp_vao);
+		glGenVertexArrays(1, &mesh_vao[0]);
 		glBindVertexArray(mesh_vao[0]);
 
 		glGenBuffers(1, &mesh_vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, mesh_vbo);
-		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, array_size, data, GL_STATIC_DRAW);
 
 		glBindVertexArray(0);
 
 	}
 
-	Mesh::Mesh(const CHvoid *data, CHsizeiptr size, CHsizei count)
+	Mesh::Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count)
 	{
-		mesh_count = count;
 		mesh_program = new ShaderProgram();
 		vertex_pos = mesh_program->getAttribLocation("Vertex_Pos");
+		mesh_count = vertex_count;
 
-		CHuint temp_vao;
-		glGenVertexArrays(1, &temp_vao);
-		mesh_vao.push_back(temp_vao);
+		glGenVertexArrays(1, &mesh_vao[0]);
 		glBindVertexArray(mesh_vao[0]);
 
 		glGenBuffers(1, &mesh_vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, mesh_vbo);
-		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, array_size, data, GL_STATIC_DRAW);
 
 		glBindVertexArray(0);
-
 	}
 
 	Mesh::~Mesh()
 	{
 		glDeleteVertexArrays(1,&mesh_vao[0]);
-		mesh_vao.clear();
 
 		glDeleteBuffers(1, &mesh_vbo);
 		mesh_vbo = 0;
@@ -64,6 +58,11 @@ namespace chrisHit
 
 		glBindVertexArray(0);
 		mesh_program->disableProgram();
+	}
+
+	ShaderProgram *Mesh::getProgram()
+	{
+		return mesh_program;
 	}
 
 }
