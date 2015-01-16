@@ -8,7 +8,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-
+#include <glm.hpp>
 
 #define VERTEX_SHADER GL_VERTEX_SHADER
 #define FRAGMENT_SHADER GL_FRAGMENT_SHADER

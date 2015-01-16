@@ -110,8 +110,8 @@ namespace chrisHit
 		return glGetAttribLocation(program, name);
 	}
 
-	CHint ShaderProgram::getUniformLocation(const char *name)
+	Uniform *ShaderProgram::getUniform(const char *name)
 	{
-		return glGetUniformLocation(program, name);
+		return new Uniform(glGetUniformLocation(program, name));
 	}
 }

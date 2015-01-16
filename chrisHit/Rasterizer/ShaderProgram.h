@@ -2,8 +2,8 @@
 #define SHADERPROGRAM_H
 
 #include "..\Base\Common.h"
-
 #include "Shader.h"
+#include "Uniform.h"
 
 namespace chrisHit
 {
@@ -25,7 +25,7 @@ namespace chrisHit
 
 		CHuint getProgramID();
 		CHint getAttribLocation(const char *name);
-		CHint getUniformLocation(const char *name);
+		Uniform *getUniform(const char *name);
 	};
 }
 
