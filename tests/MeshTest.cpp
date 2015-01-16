@@ -2,28 +2,56 @@
 
 using namespace chrisHit;
 
+class _scene
+{
+private:
+	Mesh *mymesh;
+	Mesh *mymesh2;
+public:
+	void init(){
+		CHfloat vertices[] = {
+			-0.8, 0.8, 0.0,   
+			-0.8, -0.8, 0.0,  
+			0.8, -0.8, 0.0,
+		};
+
+		CHfloat vertices2[] = {
+			0.8, 0.8, 0.0,   
+			-0.8, 0.8, 0.0,   
+			0.8, -0.8, 0.0,  
+		};
+		mymesh = new Mesh(vertices, sizeof(vertices), sizeof(vertices) / sizeof(CHfloat) / 3);
+		mymesh2 = new Mesh(vertices2, sizeof(vertices2), sizeof(vertices2) / sizeof(CHfloat) / 3);
+	}
+
+	~_scene()
+	{
+		delete mymesh, mymesh2;
+	}
+
+	void draw()
+	{
+		mymesh->drawArray();
+		mymesh2->drawArray();
+	}
+};
 
 int main(void)
 {
 	auto mywindow = new Window(800, 600, "Hello Mesh");
-
-	CHfloat vertices[] = {
-		-0.5,0.5,0.0,
-		-0.5,-0.5,0.0,
-		0.5,-0.5,0.0
-	};
-
-	auto *mymesh = new Mesh(vertices, sizeof(vertices), sizeof(vertices) / sizeof(CHfloat) / 3);
 	
+	_scene *sce = new _scene();
+	sce->init();
+
 	while (!mywindow->WindowShouldClose())
 	{
 		Clear(COLOR_BUFFER | DEPTH_BUFFER);
 
-		mymesh->draw();
+		sce->draw();
 
 		mywindow->MakeLoop();
 	}
-	delete mymesh;
+	delete sce;
 	mywindow->terminate();
 	delete mywindow;
 	return 0;

@@ -23,7 +23,7 @@ namespace chrisHit
 		Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count);
 		~Mesh();
 		
-		void draw();
+		void drawArray();
 		ShaderProgram *getProgram();
 	};
 }
