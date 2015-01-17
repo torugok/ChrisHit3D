@@ -10,17 +10,20 @@ private:
 public:
 	void init(){
 		CHfloat vertices[] = {
-			-0.8, 0.8, 0.0,   
-			-0.8, -0.8, 0.0,  
-			0.8, -0.8, 0.0,
+			-0.8f, 0.8f, 0.0f,   
+			-0.8f, -0.8f, 0.0f,  
+			0.8f, -0.8f, 0.0f,
 		};
 
 		CHfloat vertices2[] = {
-			0.8, 0.8, 0.0,   
-			-0.8, 0.8, 0.0,   
-			0.8, -0.8, 0.0,  
+			0.8f, 0.8f, 0.0f,   
+			-0.8f, 0.8f, 0.0f,   
+			0.8f, -0.8f, 0.0f,  
 		};
-		mymesh = new Mesh(vertices, sizeof(vertices), sizeof(vertices) / sizeof(CHfloat) / 3);
+
+		auto *pr = new ShaderProgram("assets/vert.glsl", "assets/frag.glsl");
+
+		mymesh = new Mesh(vertices, sizeof(vertices), sizeof(vertices) / sizeof(CHfloat) / 3,pr);
 		mymesh2 = new Mesh(vertices2, sizeof(vertices2), sizeof(vertices2) / sizeof(CHfloat) / 3);
 	}
 
@@ -28,9 +31,10 @@ public:
 	{
 		delete mymesh, mymesh2;
 	}
-
+	
 	void draw()
 	{
+		
 		mymesh->drawArray();
 		mymesh2->drawArray();
 	}
@@ -40,7 +44,7 @@ int main(void)
 {
 	auto mywindow = new Window(800, 600, "Hello Mesh");
 	
-	_scene *sce = new _scene();
+	auto *sce = new _scene();
 	sce->init();
 
 	while (!mywindow->WindowShouldClose())

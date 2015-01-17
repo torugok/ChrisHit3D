@@ -6,6 +6,12 @@
 #include <vector>
 namespace chrisHit
 {
+	struct Vertex
+	{
+		float x, y, z;
+	};
+
+
 	class Mesh
 	{
 	private:
@@ -23,7 +29,10 @@ namespace chrisHit
 		Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count);
 		~Mesh();
 		
+		void drawArray(glm::mat4 &matrix);
 		void drawArray();
+		void drawElements(glm::mat4 &matrix);
+
 		ShaderProgram *getProgram();
 	};
 }

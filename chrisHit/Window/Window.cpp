@@ -24,7 +24,7 @@ namespace chrisHit
 		glewInit();
 	}
 
-	bool Window::WindowShouldClose()
+	int Window::WindowShouldClose()
 	{
 		return glfwWindowShouldClose(window);
 	}

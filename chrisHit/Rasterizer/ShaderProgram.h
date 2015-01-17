@@ -3,7 +3,6 @@
 
 #include "..\Base\Common.h"
 #include "Shader.h"
-#include "Uniform.h"
 
 namespace chrisHit
 {
@@ -14,6 +13,7 @@ namespace chrisHit
 		Shader *vert, *frag;
 	public:
 		ShaderProgram(Shader *_vert, Shader *_frag);
+		ShaderProgram(const GLchar *vertex_path, const GLchar *fragment_path);
 		ShaderProgram();
 		void deleteProgram();
 		~ShaderProgram();
@@ -25,7 +25,8 @@ namespace chrisHit
 
 		CHuint getProgramID();
 		CHint getAttribLocation(const char *name);
-		Uniform *getUniform(const char *name);
+
+		void setUniformMatrix(const char *name, glm::mat4 &matrix);
 	};
 }
 

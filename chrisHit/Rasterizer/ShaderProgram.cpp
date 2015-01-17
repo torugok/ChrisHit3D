@@ -27,10 +27,11 @@ namespace chrisHit
 			#else
 				"#version 330 core\n"
 			#endif
-			"in vec3 Vertex_Pos;\n"
+			"in vec3 vertex_pos;\n"
+			"uniform mat4 final_mat;\n"
 			"void main()\n"
 			"{\n"
-			"gl_Position = vec4(Vertex_Pos, 1.0f);\n"
+			"gl_Position = final_mat*vec4(vertex_pos, 1.0f);\n"
 			"}\0";
 		const char* default_fragsrc =
 			#if defined(GL_ES_3)
@@ -80,6 +81,27 @@ namespace chrisHit
 
 	}
 
+	ShaderProgram::ShaderProgram(const GLchar *vertex_path, const GLchar *fragment_path)
+	{
+		
+		auto *vert_gl = new file_reader(vertex_path);
+		auto *frag_gl = new file_reader(fragment_path);
+
+		vert = new Shader(VERTEX_SHADER, vert_gl->c_str());
+		frag = new Shader(FRAGMENT_SHADER, frag_gl->c_str());
+
+		delete vert_gl, frag_gl;
+
+		program = glCreateProgram();
+		glAttachShader(program, vert->getShaderID());
+		glAttachShader(program, frag->getShaderID());
+
+		glLinkProgram(program);
+		vert->deleteShader();
+		frag->deleteShader();
+	}
+
+
 	void ShaderProgram::deleteProgram()
 	{
 		glDeleteProgram(program);
@@ -110,8 +132,10 @@ namespace chrisHit
 		return glGetAttribLocation(program, name);
 	}
 
-	Uniform *ShaderProgram::getUniform(const char *name)
+	void ShaderProgram::setUniformMatrix(const char *name, glm::mat4 &matrix)
 	{
-		return new Uniform(glGetUniformLocation(program, name));
+		this->enableProgram();
+		glUniformMatrix4fv(glGetUniformLocation(program, name), 1, GL_FALSE, &matrix[0][0]);
+		this->disableProgram();
 	}
 }

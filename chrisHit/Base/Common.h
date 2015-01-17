@@ -5,10 +5,11 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include <fstream>
 #include <vector>
-#include <algorithm>
 #include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <map>
+#include "file_reader.h"
 
 #define VERTEX_SHADER GL_VERTEX_SHADER
 #define FRAGMENT_SHADER GL_FRAGMENT_SHADER

@@ -14,7 +14,7 @@ namespace chrisHit
 
 	public:
 		Window(int x, int y, const char *title);
-		bool WindowShouldClose();
+		int WindowShouldClose();
 		void MakeLoop();
 		void terminate();
 	};
