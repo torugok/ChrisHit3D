@@ -15,7 +15,6 @@ namespace chrisHit
 		ShaderProgram(Shader *_vert, Shader *_frag);
 		ShaderProgram(const GLchar *vertex_path, const GLchar *fragment_path);
 		ShaderProgram();
-		void deleteProgram();
 		~ShaderProgram();
 		//void attachVertShader(Shader *vert);
 		//void attachFragShader(Shader *frag);

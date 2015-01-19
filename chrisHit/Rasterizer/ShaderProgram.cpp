@@ -13,8 +13,8 @@ namespace chrisHit
 		glAttachShader(program, frag->getShaderID());
 		
 		glLinkProgram(program);
-		vert->deleteShader();
-		frag->deleteShader();
+		delete vert;
+		delete frag;
 	}
 
 	ShaderProgram::ShaderProgram()
@@ -76,9 +76,8 @@ namespace chrisHit
 		glAttachShader(program, frag->getShaderID());
 
 		glLinkProgram(program);
-		vert->deleteShader();
-		frag->deleteShader();
-
+		delete vert;
+		delete frag;
 	}
 
 	ShaderProgram::ShaderProgram(const GLchar *vertex_path, const GLchar *fragment_path)
@@ -97,19 +96,13 @@ namespace chrisHit
 		glAttachShader(program, frag->getShaderID());
 
 		glLinkProgram(program);
-		vert->deleteShader();
-		frag->deleteShader();
-	}
-
-
-	void ShaderProgram::deleteProgram()
-	{
-		glDeleteProgram(program);
+		delete vert;
+		delete frag;
 	}
 
 	ShaderProgram::~ShaderProgram()
 	{
-		deleteProgram();
+		glDeleteProgram(program);
 	}
 
 	void ShaderProgram::enableProgram()

@@ -10,7 +10,6 @@ private:
 	CHuint shaderID;
 public:
 	Shader(CHenum type, const char *data);
-	void deleteShader();
 	~Shader();
 
 	CHuint getShaderID();

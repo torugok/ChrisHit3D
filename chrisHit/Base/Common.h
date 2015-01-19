@@ -23,3 +23,5 @@ typedef GLfloat CHfloat;
 typedef GLvoid CHvoid;
 typedef GLsizeiptr CHsizeiptr;
 typedef GLsizei CHsizei;
+
+typedef unsigned int CHid;

@@ -2,5 +2,12 @@
 #define NODE_H
 
 class Node;
+/*class Node
+{
+private:
+
+public:
+	Node()
+};*/
 
 #endif

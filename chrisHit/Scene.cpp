@@ -1,6 +1,7 @@
 #include "Scene.h"
 
-namespace chrisHit
+
+/*namespace chrisHit
 {
 	Node *Scene::createNode(const char*name,Mesh *mesh)
 	{
@@ -10,4 +11,4 @@ namespace chrisHit
 		return node;
 	}
 
-}
+}*/

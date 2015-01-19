@@ -9,15 +9,9 @@ Shader::Shader(CHenum type,const char *data)
 	glCompileShader(shaderID);
 }
 
-void Shader::deleteShader()
-{
-	glDeleteShader(shaderID);
-}
-
-
 Shader::~Shader()
 {
-	deleteShader();
+	glDeleteShader(shaderID);
 }
 
 

@@ -6,31 +6,48 @@
 #include <vector>
 namespace chrisHit
 {
-	struct Vertex
+
+	class MeshDecl
 	{
-		float x, y, z;
+	public:
+		std::vector<glm::vec3> vertices;
+		std::vector<GLuint> indices;
+		std::vector<glm::vec3> colors;
+		void addVertex(glm::vec3 vec)
+		{
+			vertices.push_back(vec);
+		}
+		void addIndices(glm::ivec3 vec)
+		{
+			indices.push_back(vec.x);
+			indices.push_back(vec.y);
+			indices.push_back(vec.z);
+		}
+		void addColor(glm::vec3 vec)
+		{
+			colors.push_back(vec);
+		}
+
 	};
 
 
 	class Mesh
 	{
 	private:
-		CHint vertex_pos;
-		CHint position_loc;
-		CHuint mesh_vbo;
-		CHuint mesh_vao[1];
-		//std::vector<CHuint> mesh_vao;
-		CHsizei mesh_count;
-		//CHfloat *mesh_data;
+		std::vector<glm::vec3> vertices;
+		std::vector<GLuint> indices;
+
+		unsigned int mesh_vbo, mesh_vao, mesh_ibo;
+		int vertex_pos;
+
 		ShaderProgram *mesh_program;
-		
+		void Submit();
 	public:
-		Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count,  ShaderProgram *program);
-		Mesh(const CHvoid *data, CHsizeiptr array_size, CHsizei vertex_count);
+		Mesh(MeshDecl mesh, ShaderProgram *program);
+		Mesh(MeshDecl mesh);
 		~Mesh();
 		
 		void drawArray(glm::mat4 &matrix);
-		void drawArray();
 		void drawElements(glm::mat4 &matrix);
 
 		ShaderProgram *getProgram();

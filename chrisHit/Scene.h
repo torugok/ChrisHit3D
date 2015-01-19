@@ -6,7 +6,9 @@
 #include "Node.h"
 #include "Rasterizer\Mesh.h"
 
-namespace chrisHit
+
+class Scene;
+/*namespace chrisHit
 {
 	class Scene
 	{
@@ -21,7 +23,6 @@ namespace chrisHit
 		void setActiveCamera(Camera *cam);
 
 	};
-}
-
+}*/
 
 #endif
