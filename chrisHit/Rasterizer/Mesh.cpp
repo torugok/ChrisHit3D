@@ -8,20 +8,15 @@ namespace chrisHit
 		glBindVertexArray(mesh_vao);
 
 		glGenBuffers(1, &mesh_vbo);
-		glGenBuffers(1, &mesh_ibo);
-
-		GLuint indices_[] = { 0, 2, 3,
-			0, 3, 1 };
 		glBindBuffer(GL_ARRAY_BUFFER, mesh_vbo);
 		glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(MeshDecl), &vertices[0], GL_STATIC_DRAW);
 
+		glGenBuffers(1, &mesh_ibo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh_ibo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices_), indices_, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size()* sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
 
 		vertex_pos = mesh_program->getAttribLocation("vertex_pos");
 		glEnableVertexAttribArray(vertex_pos);
-
-		
 
 		glBindVertexArray(0);
 	}
@@ -57,8 +52,8 @@ namespace chrisHit
 		glVertexAttribPointer(vertex_pos, 3, GL_FLOAT, GL_FALSE, 0, (CHvoid*)0);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh_ibo);
-		//glDrawArrays(GL_TRIANGLES, 0, vertices.size());
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT,0);
+
+		glDrawElements(GL_TRIANGLES,indices.size(), GL_UNSIGNED_INT,0);
 
 		glBindVertexArray(0);
 		mesh_program->disableProgram();

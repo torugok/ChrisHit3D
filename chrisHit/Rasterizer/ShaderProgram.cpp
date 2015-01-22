@@ -42,7 +42,7 @@ namespace chrisHit
 			"out vec4 frag_color;\n"
 			"void main()\n"
 			"{\n"
-			"frag_color = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
+			"frag_color = vec4(1.0f, 0.5f, 1.0f, 1.0f);\n"
 			"}\n\0";
 #else
 		const char* default_vertexsrc =

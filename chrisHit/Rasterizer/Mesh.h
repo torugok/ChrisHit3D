@@ -13,16 +13,19 @@ namespace chrisHit
 		std::vector<glm::vec3> vertices;
 		std::vector<GLuint> indices;
 		std::vector<glm::vec3> colors;
+
 		void addVertex(glm::vec3 vec)
 		{
 			vertices.push_back(vec);
 		}
-		void addIndices(glm::ivec3 vec)
+
+		void addIndices(GLuint x, GLuint y, GLuint z)
 		{
-			indices.push_back(vec.x);
-			indices.push_back(vec.y);
-			indices.push_back(vec.z);
+			indices.push_back(x);
+			indices.push_back(y);
+			indices.push_back(z);
 		}
+
 		void addColor(glm::vec3 vec)
 		{
 			colors.push_back(vec);
