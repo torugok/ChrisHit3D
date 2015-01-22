@@ -15,6 +15,7 @@ namespace chrisHit
 		Window *window;
 
 		float delta;
+
 	public:
 		static System &getInstance();
 		void Begin(int x, int y, const char *name);

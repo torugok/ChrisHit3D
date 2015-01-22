@@ -7,9 +7,12 @@ namespace chrisHit
 	void System::Begin(int x, int y, const char *name)
 	{
 		window = new Window(x, y, name);
-		std::cout << "OpenGL actual: " 
+		#if defined(_DEBUG)
+		std::cout << "OpenGL: " 
 			<< glGetString(GL_VERSION) << " GLSL version: " 
-			<< glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+			<< glGetString(GL_SHADING_LANGUAGE_VERSION) 
+			<< std::endl;
+		#endif
 	}
 
 	void System::MakePlatform(Framework *framework)
@@ -21,10 +24,10 @@ namespace chrisHit
 		{
 			double currentTime = glfwGetTime();
 			float deltaTime = float(currentTime - lastTime);
+			lastTime = currentTime;
 			framework->Loop(deltaTime);
 			this->window->MakeLoop();
 		}
-		this->Close();
 	#endif
 	}
 
