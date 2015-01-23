@@ -3,4 +3,8 @@
 #include <map>
 #include "Scene.h"
 
-class SceneManager;
+class SceneManager
+{
+
+
+};

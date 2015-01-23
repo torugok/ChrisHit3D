@@ -2,7 +2,18 @@
 #include "ShaderProgram.h"
 #include "Mesh.h"
 
-void Clear(GLbitfield mask)
+namespace chrisHit
 {
-	glClear(mask);
+	namespace RenderFunctions
+	{
+		void ClearBuffer(GLbitfield mask)
+		{
+			glClear(mask);
+		}
+
+		void setBackGroundColor(GLclampf r, GLclampf g, GLclampf b, GLclampf a)
+		{
+			glClearColor(r, g, b, a);
+		}
+	}
 }

@@ -11,6 +11,7 @@
 #include <map>
 #include "file_reader.h"
 
+
 #define VERTEX_SHADER GL_VERTEX_SHADER
 #define FRAGMENT_SHADER GL_FRAGMENT_SHADER
 #define COLOR_BUFFER GL_COLOR_BUFFER_BIT
@@ -23,5 +24,11 @@ typedef GLfloat CHfloat;
 typedef GLvoid CHvoid;
 typedef GLsizeiptr CHsizeiptr;
 typedef GLsizei CHsizei;
+
+typedef GLint UniformHandle;
+typedef GLint AttribHandle;
+typedef GLuint ProgramHandle;
+typedef GLsizei VertexCount;
+typedef GLuint ShaderHandler;
 
 typedef unsigned int CHid;

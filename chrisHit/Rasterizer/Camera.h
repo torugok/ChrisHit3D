@@ -10,10 +10,10 @@ namespace chrisHit
 	class Camera
 	{
 	private:
-		glm::mat4 *Projection;
-		glm::mat4 *View;
+		glm::mat4 Projection;
+		glm::mat4 View;
 	public:
-		Camera(glm::mat4 *Projection, glm::mat4 *View);
+		Camera(glm::mat4 &Projection, glm::mat4 &View);
 		void yaw(float angle);
 		void pitch(float angle);
 		void roll(float angle);

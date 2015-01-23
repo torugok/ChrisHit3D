@@ -4,16 +4,18 @@
 
 #include "..\Base\Common.h"
 
-class Shader
+namespace chrisHit
 {
-private:
-	CHuint shaderID;
-public:
-	Shader(CHenum type, const char *data);
-	~Shader();
+	class Shader
+	{
+	private:
+		ShaderHandler shaderID;
+	public:
+		Shader(CHenum type, const char *data);
+		~Shader();
 
-	CHuint getShaderID();
-	//void compileShader();
-};
-
+		ShaderHandler getShaderHandle();
+		//void compileShader();
+	};
+}
 #endif

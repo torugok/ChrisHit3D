@@ -8,11 +8,11 @@ namespace chrisHit
 		vert = _vert;
 		frag = _frag;
 
-		program = glCreateProgram();
-		glAttachShader(program, vert->getShaderID());
-		glAttachShader(program, frag->getShaderID());
+		this->program = glCreateProgram();
+		glAttachShader(this->program, vert->getShaderHandle());
+		glAttachShader(this->program, frag->getShaderHandle());
 		
-		glLinkProgram(program);
+		glLinkProgram(this->program);
 		delete vert;
 		delete frag;
 	}
@@ -71,11 +71,12 @@ namespace chrisHit
 		vert = new Shader(VERTEX_SHADER, default_vertexsrc);
 		frag = new Shader(FRAGMENT_SHADER, default_fragsrc);
 
-		program = glCreateProgram();
-		glAttachShader(program, vert->getShaderID());
-		glAttachShader(program, frag->getShaderID());
+		this->program = glCreateProgram();
+		glAttachShader(this->program, vert->getShaderHandle());
+		glAttachShader(this->program, frag->getShaderHandle());
 
-		glLinkProgram(program);
+		glLinkProgram(this->program);
+
 		delete vert;
 		delete frag;
 	}
@@ -91,23 +92,23 @@ namespace chrisHit
 
 		delete vert_gl, frag_gl;
 
-		program = glCreateProgram();
-		glAttachShader(program, vert->getShaderID());
-		glAttachShader(program, frag->getShaderID());
+		this->program = glCreateProgram();
+		glAttachShader(this->program, vert->getShaderHandle());
+		glAttachShader(this->program, frag->getShaderHandle());
 
-		glLinkProgram(program);
+		glLinkProgram(this->program);
 		delete vert;
 		delete frag;
 	}
 
 	ShaderProgram::~ShaderProgram()
 	{
-		glDeleteProgram(program);
+		glDeleteProgram(this->program);
 	}
 
 	void ShaderProgram::enableProgram()
 	{
-		glUseProgram(program);
+		glUseProgram(this->program);
 	}
 
 	void ShaderProgram::disableProgram()
@@ -115,20 +116,23 @@ namespace chrisHit
 		glUseProgram(0);
 	}
 
-	CHuint ShaderProgram::getProgramID()
+	ProgramHandle ShaderProgram::getProgramHandle()
 	{
-		return program;
+		return this->program;
 	}
 
-	CHint ShaderProgram::getAttribLocation(const char *name)
+	AttribHandle ShaderProgram::getAttribLocation(const char *name)
 	{
-		return glGetAttribLocation(program, name);
+		return glGetAttribLocation(this->program, name);
 	}
 
-	void ShaderProgram::setUniformMatrix(const char *name, glm::mat4 &matrix)
+	UniformHandle ShaderProgram::getUniformLocation(const char *name)
 	{
-		this->enableProgram();
-		glUniformMatrix4fv(glGetUniformLocation(program, name), 1, GL_FALSE, &matrix[0][0]);
-		this->disableProgram();
+		return glGetUniformLocation(this->program, name);
+	}
+
+	void ShaderProgram::setUniformMatrix(UniformHandle location, glm::mat4 &matrix)
+	{
+		glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
 	}
 }

@@ -3,6 +3,7 @@
 
 #include "..\Base\Common.h"
 #include "ShaderProgram.h"
+#include "VertexBuffer.h"
 
 namespace chrisHit
 {
@@ -20,17 +21,24 @@ namespace chrisHit
 	struct MeshData
 	{
 		std::vector<Vertex> vertices;
-		std::vector<GLubyte> indices;
+		std::vector<GLushort> indices;
 
 		void addVertex(CHfloat x, CHfloat y, CHfloat z)
 		{
 			vertices.push_back(Vertex(x, y, z));
 		}
-		void addIndices(GLubyte x, GLubyte y, GLubyte z)
+
+		void addIndices(GLushort x, GLushort y, GLushort z)
 		{
 			indices.push_back(x);
 			indices.push_back(y);
 			indices.push_back(z);
+		}
+
+		void clear()
+		{
+			vertices.clear();
+			indices.clear();
 		}
 	};
 
@@ -38,21 +46,20 @@ namespace chrisHit
 	class Mesh
 	{
 	private:
-		std::vector<Vertex> vertices;
-		std::vector<GLubyte> indices;
-
-		unsigned int mesh_vbo, mesh_vao, mesh_ibo;
+		VertexBuffer *mesh_vbo, *mesh_ibo;
+		GLuint mesh_vao;
+		GLsizei count;
 		int vertex_pos;
+		int matrix_pos;
 
 		ShaderProgram *mesh_program;
-		void Submit();
+
 	public:
-		Mesh(MeshData mesh, ShaderProgram *program);
-		Mesh(MeshData mesh);
+		Mesh(MeshData *mesh, ShaderProgram *program);
+		Mesh(MeshData *mesh);
 		~Mesh();
 		
 		void Draw(glm::mat4 &matrix);
-		void drawElements(glm::mat4 &matrix);
 
 		ShaderProgram *getProgram();
 	};

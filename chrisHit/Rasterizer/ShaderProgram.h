@@ -9,7 +9,7 @@ namespace chrisHit
 	class ShaderProgram
 	{
 	private:
-		CHuint program;
+		ProgramHandle program;
 		Shader *vert, *frag;
 	public:
 		ShaderProgram(Shader *_vert, Shader *_frag);
@@ -22,10 +22,11 @@ namespace chrisHit
 		void enableProgram();
 		void disableProgram();
 
-		CHuint getProgramID();
-		CHint getAttribLocation(const char *name);
+		ProgramHandle getProgramHandle();
+		AttribHandle getAttribLocation(const char *name);
+		UniformHandle getUniformLocation(const char *name);
 
-		void setUniformMatrix(const char *name, glm::mat4 &matrix);
+		void setUniformMatrix(UniformHandle location, glm::mat4 &matrix);
 	};
 }
 

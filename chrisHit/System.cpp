@@ -8,9 +8,10 @@ namespace chrisHit
 	{
 		window = new Window(x, y, name);
 		#if defined(_DEBUG)
-		std::cout << "OpenGL: " 
-			<< glGetString(GL_VERSION) << " GLSL version: " 
-			<< glGetString(GL_SHADING_LANGUAGE_VERSION) 
+		std::cout << "System initialized sucefull" << std::endl 
+			<< "Drivers: "
+			<< "OpenGL: "<< glGetString(GL_VERSION) 
+			<< " GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) 
 			<< std::endl;
 		#endif
 	}
